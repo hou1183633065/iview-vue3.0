@@ -24,7 +24,7 @@
                   :key="index"
                   :name="index"
                   :to="item.path"
-                  class="align-left"
+                  class="text-left"
                   >
                   <Icon :type="item.meta.icon" size="16" />
                   <span>{{item.meta.title}}</span>

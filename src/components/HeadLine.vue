@@ -1,6 +1,9 @@
 <template>
   <div class="Headline flex row justify-start align-center ptb25">
-    <span class="size18 weight400">{{ title }}</span>
+    <p class="size18 weight400">{{ title }}</p>
+    <div class="subtitle ml20 size12">
+      <slot name="subtitle"></slot>
+    </div>
   </div>
 </template>
 
@@ -25,9 +28,12 @@ export default {
     height: 22px;
     background: $headline-bg-color;
   }
-  span{
+  p{
     margin-left: 8px;
     color: $headline-color;
+  }
+  .subtitle{
+    color: #999999;
   }
 }
 </style>

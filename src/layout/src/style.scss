@@ -1,4 +1,3 @@
-
 @import "@/assets/style/Theme.scss";
 .HomePage {
   .ivu-layout {
@@ -12,11 +11,10 @@
           width: 40px;
         }
       }
-      .header-ul{
-        ul{
-          li{
-            .ivu-icon{
-            }
+      .header-ul {
+        ul {
+          li {
+            .ivu-icon {}
           }
         }
       }
@@ -44,7 +42,8 @@
         }
       }
     }
-    .content{
+    .content {
+      padding-bottom: 80px;
       background: $content-bg-color;
       border-radius: 2px;
     }
