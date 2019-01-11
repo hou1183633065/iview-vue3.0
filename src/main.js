@@ -5,6 +5,8 @@ import store from './store/index'
 
 import 'iview/dist/styles/iview.css'
 
+import './mock/index'
+
 Vue.config.productionTip = false
 
 new Vue({
