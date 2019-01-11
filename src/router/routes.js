@@ -8,17 +8,20 @@ const firstRoutes = [
   },
   {
     path: '/index',
-    name: 'Index',
     component: Layout,
     meta: {
-      requireAuth: true,
-      keepAlive: true
+      // requireAuth: true
     },
     children: menuItemRoutes
   },
   {
-    path: '/home',
-    name: 'home',
+    path: '/login',
+    name: 'login',
+    component: () => import(/* webpackChunkName: "about" */ '@/views/Login/index.vue')
+  },
+  {
+    path: '/home1',
+    name: 'home1',
     component: () => import(/* webpackChunkName: "about" */ '@/views/Home.vue')
   }
 ]

@@ -1,3 +1,4 @@
+import menuItemRoutes from '@/router/menuItemRoutes'
 import {
   Layout,
   Header,
@@ -19,5 +20,29 @@ export default {
     Menu,
     MenuItem,
     Icon
+  },
+  data () {
+    return {
+      menuItems: [],
+      activeName: 0
+    }
+  },
+  created () {
+    this.menuItems = menuItemRoutes
+    menuItemRoutes.forEach((ele, index) => {
+      if (this.$route.path === ele.path) {
+        this.activeName = index
+      }
+    })
+  },
+  computed: {},
+  methods: {
+    handleLogoBtn () {
+      this.activeName = 0
+      this.$router.push('/')
+    },
+    handleSelectMenu (name) {
+      this.activeName = name
+    }
   }
 }

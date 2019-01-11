@@ -4,7 +4,7 @@
       <Layout>
         <Header>
           <div class="header-logo">
-            <img src="@/assets/logo.png">
+            <img src="@/assets/logo.png" @click="handleLogoBtn">
             <span class="ml20 size22">视频管理平台</span>
           </div>
           <div class="header-ul">
@@ -21,20 +21,25 @@
         </Header>
         <Layout>
             <Sider hide-trigger width="260">
-              <Menu width="260" name="1">
-                <MenuItem  name="1"><Icon type="md-desktop" size="16" />文章管理</MenuItem>
-                <MenuItem  name="2"><Icon type="md-person" size="16" />文章管理</MenuItem>
-                <MenuItem  name="3"><Icon type="md-heart" size="16" />文章管理</MenuItem>
-                <MenuItem  name="4"><Icon type="md-heart" size="16" />文章管理</MenuItem>
-                <MenuItem  name="5"><Icon type="md-heart" size="16" />文章管理</MenuItem>
-                <MenuItem  name="6"><Icon type="md-heart" size="16" />文章管理</MenuItem>
-                <MenuItem  name="7"><Icon type="md-heart" size="16" />文章管理</MenuItem>
+              <Menu width="260" :active-name="activeName" @on-select="handleSelectMenu">
+                <MenuItem
+                  v-for="(item, index) in menuItems"
+                  :key="index"
+                  :name="index"
+                  :to="item.path"
+                  >
+                  <Icon :type="item.meta.icon" size="16" />
+                  <span>{{item.meta.title}}</span>
+                </MenuItem>
               </Menu>
             </Sider>
             <Layout>
                 <Content>
                   <div class="content">
-                    <router-view></router-view>
+                   <keep-alive>
+                      <router-view v-if="$route.meta.keepAlive"></router-view>
+                    </keep-alive>
+                    <router-view v-if="!$route.meta.keepAlive"></router-view>
                   </div>
                 </Content>
                 <Footer>Footer</Footer>
