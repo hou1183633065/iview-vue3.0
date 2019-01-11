@@ -1,11 +1,15 @@
 <template>
   <div class="Console">
-    <h1>This is an Console page{{count1}}</h1>
+    <head-line title="警报统计"></head-line>
   </div>
 </template>
 
 <script>
+import HeadLine from '@/components/HeadLine'
 export default {
+  components: {
+    HeadLine
+  },
   data () {
     return {
       count1: 0

@@ -1,32 +1,30 @@
 
 <template>
-    <div class="HomePage">
-      <Layout>
-        <Header>
-          <div class="header-logo">
-            <img src="@/assets/logo.png" @click="handleLogoBtn">
+    <div class="HomePage full-height">
+      <Layout class="full-height">
+        <Header class="flex row justify-between align-center header-bg">
+          <div class="header-logo flex row justify-start align-center">
+            <img class="pointer self-center" src="@/assets/logo.png" @click="handleLogoBtn">
             <span class="ml20 size22">视频管理平台</span>
           </div>
           <div class="header-ul">
-            <ul>
-              <li>
-                <Icon type="md-contact" size="25" />
-                <span>铲平运营</span>
-              </li>
-              <li>
-                <span>设置</span>
+            <ul class="flex row align-center size18">
+              <li  class="pointer">
+                <Icon class="mr15" type="md-contact" size="25" />
+                <span>操作人：张三</span>
               </li>
             </ul>
           </div>
         </Header>
-        <Layout>
-            <Sider hide-trigger width="260">
+        <Layout class="full-height">
+            <Sider hide-trigger width="260" class="full-height slide-bg">
               <Menu width="260" :active-name="activeName" @on-select="handleSelectMenu">
                 <MenuItem
                   v-for="(item, index) in menuItems"
                   :key="index"
                   :name="index"
                   :to="item.path"
+                  class="align-left"
                   >
                   <Icon :type="item.meta.icon" size="16" />
                   <span>{{item.meta.title}}</span>
@@ -34,15 +32,15 @@
               </Menu>
             </Sider>
             <Layout>
-                <Content>
-                  <div class="content">
+                <Content class="padding10">
+                  <div class="content plr35">
                    <keep-alive>
                       <router-view v-if="$route.meta.keepAlive"></router-view>
                     </keep-alive>
                     <router-view v-if="!$route.meta.keepAlive"></router-view>
                   </div>
                 </Content>
-                <Footer>Footer</Footer>
+                <Footer class="none">Footer</Footer>
             </Layout>
         </Layout>
 

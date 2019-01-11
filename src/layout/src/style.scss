@@ -1,81 +1,52 @@
 
+@import "@/assets/style/Theme.scss";
 .HomePage {
-  height: 100%;
   .ivu-layout {
-    height: 100%;
     &-header {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-content: center;
       height: 70px;
       padding: 0 30px;
-      background: #108ee9;
-      color: #ffffff;
+      background: $header-color;
+      color: $header-font-color;
       .header-logo {
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
-        align-content: center;
         img {
-          cursor: pointer;
-          align-self: center;
           width: 40px;
-          span {
-            color: #ffffff;
-          }
         }
       }
       .header-ul{
         ul{
-          display: flex;
-          flex-direction: row;
-          align-content: center;
-          height: 100%;
           li{
-            cursor: pointer;
-            display: inline;
-            margin-left: 30px;
-            font-size: 18px;
             .ivu-icon{
-              margin-right: 15px;
             }
           }
         }
       }
     }
     &-sider {
-      height: 100%;
-      background: #252a2e;
+      background: $slider-color;
       .ivu-menu {
-        color: #ffffff;
+        color: $slider-font-color;
         &-item {
           height: 50px;
-          text-align: left;
-          & > i {
+          .ivu-icon {
             margin-right: 24px;
           }
           &:hover {
-            color: #ffffff;
-            background: #0d7ac9;
+            color: $slider-font-color;
+            background: $slider-button-color;
           }
         }
         &-light {
           background: none;
           &.ivu-menu-vertical .ivu-menu-item-active:not(.ivu-menu-submenu) {
-            color: #ffffff;
-            background: #0d7ac9;
+            color: $slider-font-color;
+            background: $slider-button-color;
           }
         }
       }
     }
-    &-content {
-      box-sizing: border-box;
-      padding: 10px;
-      .content{
-        background: #FFFFFF;
-        border-radius: 2px;
-      }
+    .content{
+      background: $content-bg-color;
+      border-radius: 2px;
     }
   }
 }
