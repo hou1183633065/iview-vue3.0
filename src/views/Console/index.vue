@@ -6,6 +6,7 @@
 
 <script>
 import HeadLine from '@/components/HeadLine'
+import { getUser } from './src/api'
 export default {
   components: {
     HeadLine
@@ -16,9 +17,17 @@ export default {
     }
   },
   mounted () {
-    setTimeout(() => {
-      this.count1 = 100
-    }, 3000)
+    this.getDataList(1)
+  },
+  methods: {
+    async getDataList (page) {
+      let { success, resData } = await getUser(page)
+      if (success) {
+        console.log(resData)
+      } else {
+        console.log('请求失败')
+      }
+    }
   }
 }
 </script>
