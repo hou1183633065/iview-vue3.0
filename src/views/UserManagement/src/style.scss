@@ -1,0 +1,55 @@
+@import "@/assets/style/Theme.scss";
+.UserManagement {
+  &-alarm-count {
+    height: 84px;
+    border-radius: 4px;
+    border: 1px solid rgba(236, 236, 236, 1);
+    background: #ececec;
+    .blue-font {
+      color: $blue-font-color;
+    }
+    &.input-row {
+      height: auto;
+      p {
+        white-space: nowrap;
+      }
+    }
+  }
+  .ivu-table-wrapper {
+    border-color: #ececec;
+    border-radius: 4px 4px 0px 0px;
+    .ivu-table-header {
+      .ivu-table-column-center {
+        height: 50px;
+        border-right: none;
+      }
+    }
+  }
+  .ivu-table th {
+    background-color: #ececec;
+  }
+  .active-color {
+    color: $active--color;
+  }
+  .ivu-page-item-active {
+    background-color: $blue-button-color;
+    a {
+      color: #ffffff;
+    }
+  }
+}
+.ivu-modal-content{
+  .modal-content{
+    .ivu-cascader,
+    .ivu-date-picker,
+    .ivu-input-wrapper,
+    .ivu-select-selection,
+    .ivu-select-dropdown{
+      width: 160px !important;
+      min-width: 160px !important;
+    }
+    .ivu-radio-wrapper{
+      width: 40%;
+    }
+  }
+}
