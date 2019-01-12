@@ -1,34 +1,24 @@
 const mutations = {
-  addDataList (state, option) {
-    if (!state.dataList.length) {
-      state.dataList.push(option)
-    } else {
-      state.dataList.forEach(element => {
-        if (element.page !== option.page) {
-          state.dataList.push(option)
+  plusDataList (state, option) {
+    let hasPage = state.storeDataList.some((item) => {
+      return item.page === option.page
+    })
+    if (!hasPage) {
+      state.storeDataList.push(option)
+    }
+  },
+  toogleChecked (state, option) {
+    let targetData = state.storeDataList.find((item) => {
+      return item.page === option.page
+    })
+    targetData.data.map((item) => {
+      option.data.forEach(ele => {
+        if (JSON.stringify(item) === JSON.stringify(ele)) {
+          item._checked = option.checked
         }
       })
-    }
-    // state.dataList = state.dataList.filter((item, index, self)=>{
-    //   console.log(item, index, self)
-    //   return item
-    // })
-    // state.dataList.push(data)
-  },
-  addExportCsv (state, data) {
-    console.log(data)
-    // state.exportCsv++
-  },
-  removeExportCsv (state, data) {
-    console.log(data)
-    // state.exportCsv++
-  },
-  addExportCsvAll (state, data) {
-    state.exportCsvList = data
-    // state.exportCsv++
-  },
-  removeExportCsvAll (state) {
-    state.exportCsvList = []
+      return item
+    })
   }
 }
 

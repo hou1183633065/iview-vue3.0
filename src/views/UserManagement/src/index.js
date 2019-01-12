@@ -7,19 +7,13 @@ import {
   Select,
   Option,
   Input,
-  Icon,
   Page,
   Modal,
   Form,
   FormItem,
-  Row,
-  Col,
-  DatePicker,
-  TimePicker,
   RadioGroup,
   Radio,
-  CheckboxGroup,
-  Checkbox
+  Notice
 } from 'iview'
 import { getTableList } from './api'
 export default {
@@ -30,38 +24,24 @@ export default {
     Select,
     Option,
     iInput: Input,
-    Icon,
     Page,
     Modal,
     Form,
     FormItem,
-    Row,
-    Col,
-    DatePicker,
-    TimePicker,
     RadioGroup,
-    Radio,
-    CheckboxGroup,
-    Checkbox
+    Radio
   },
   data () {
     return returnData
   },
-  mounted () {
-    // console.log(this.$store.state.dataList)
-    // this.$store.commit('removeExportCsvAll')
-    // console.log(this.$refs.table)
+  created () {
     this.getUserList(1)
+  },
+  mounted () {
   },
   computed: {
     dataList () {
-      let newData = []
-      this.$store.state.dataList.forEach(element => {
-        if (element.page === this.pageCurrent) {
-          newData = element.data
-        }
-      })
-      return newData
+      return this.getIndexData(this.pageCurrent)
     }
   },
   watch: {
@@ -70,12 +50,19 @@ export default {
     }
   },
   methods: {
+    handleSearch () {
+      // console.log(this.$store.state.storeDataList)
+    },
     handleAddUser () {
       this.setModelData('add')
     },
-    handleSearch () {
-      console.log(this.dataList)
-      console.log(this.$store.state.dataList)
+    handleEditRow (currentRow) {
+      this.setModelData('edit', {
+        name: currentRow.name,
+        email: currentRow.email,
+        gender: currentRow.gender,
+        grade: currentRow.grade
+      })
     },
     setModelData (type, data) {
       let newObj = {}
@@ -95,50 +82,40 @@ export default {
       this.modalShow = true
     },
     handleSelectIndex (selection) {
-      this.$store.commit('addExportCsv', {
-        page: this.pageCurrent,
-        data: this.toogleChecked(selection, true)
-      })
+      this.sendStoreData(this.pageCurrent, selection, true)
     },
     handleCancelIndex (selection) {
-      this.$store.commit('removeExportCsv', {
-        page: this.pageCurrent,
-        data: this.toogleChecked(selection, false)
-      })
+      this.sendStoreData(this.pageCurrent, selection, false)
     },
     handleSelectAll (selection) {
-      this.$store.commit('addExportCsvAll', {
-        page: this.pageCurrent,
-        data: this.toogleChecked(selection, true)
-      })
+      this.sendStoreData(this.pageCurrent, selection, true)
     },
-    handleCanceAll () {
-      this.$store.commit('removeExportCsvAll')
-    },
-    toogleChecked (data, type) {
-      type = type || false
-      data.map((item) => {
-        item._checked = type
-        return item
-      })
-      return data
-    },
-    handleEditRow (currentRow) {
-      this.setModelData('edit', {
-        name: currentRow.name,
-        email: currentRow.email,
-        gender: currentRow.gender,
-        grade: currentRow.grade
-      })
+    handleCanceAll (selection) {
+      this.sendStoreData(this.pageCurrent, selection, false)
     },
     handleLookMore (index) {
       console.log(this.dataList[index])
     },
-    handleDownLoad (index) {
-      console.log(this.dataList[index])
+    handleDownLoad (loadIndex) {
+      this.exportCsv('table', {
+        filename: this.dataList[loadIndex].name,
+        columns: this.userColumns.filter((item, index, self) => index > 0 && index < self.length),
+        data: this.dataList.filter((item, index, self) => index === loadIndex)
+      })
     },
     handleDownLoadAll () {
-      console.log(this.$store.state.exportCsvList)
+      let newArr = this.getCheckedData()
+      if (!newArr.length) {
+        Notice.error({
+          title: '没有勾选信息，暂不可批量下载！'
+        })
+        return false
+      }
+      this.exportCsv('table', {
+        filename: '用户导出表',
+        columns: this.userColumns.filter((item, index, self) => index > 0 && index < self.length),
+        data: newArr.filter((item, index, self) => index > 0 && index < self.length)
+      })
     },
     handleFirstPage () {
       console.log('handleFirstPage')
@@ -165,13 +142,10 @@ export default {
     },
     async getUserList (page) {
       this.userLoading = true
-      if (!this.$store.state.dataList[page]) {
+      if (!this.storeHasPage()) {
         let { success, resData } = await getTableList(page)
         if (success) {
-          this.$store.commit('addDataList', {
-            page: page,
-            data: resData
-          })
+          this.plusDataList(page, resData)
         } else {
           console.log('请求失败')
         }

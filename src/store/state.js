@@ -1,6 +1,5 @@
 const state = {
-  dataList: [],
-  exportCsvList: []
+  storeDataList: []
 }
 
 export default state
