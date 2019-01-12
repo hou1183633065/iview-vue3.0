@@ -2,21 +2,41 @@ const returnData = {
   pageCurrent: 1,
   pageSize: 10,
   pageTotal: 120,
-  columns12: [
+  alarmColumns: [
     {
-      title: 'Name',
+      title: '地区',
       align: 'center',
-      slot: 'name'
+      key: 'province'
     },
     {
-      title: 'Age',
+      title: '车牌号',
       align: 'center',
-      key: 'age'
+      key: 'carId'
     },
     {
-      title: 'Address',
+      title: '设备号',
       align: 'center',
-      key: 'address'
+      key: 'deviceId'
+    },
+    {
+      title: '报警类型',
+      align: 'center',
+      key: 'errorType'
+    },
+    {
+      title: '文件数量',
+      align: 'center',
+      key: 'fileNum'
+    },
+    {
+      title: '文件大小',
+      align: 'center',
+      key: 'fileSize'
+    },
+    {
+      title: '文件时长',
+      align: 'center',
+      key: 'fileTime'
     },
     {
       title: '操作',
@@ -25,48 +45,36 @@ const returnData = {
       width: 150
     }
   ],
-  data6: [
-    {
-      name: 'John Brown',
-      age: 18,
-      address: 'New York No. 1 Lake Park'
-    },
-    {
-      name: 'Jim Green',
-      age: 24,
-      address: 'London No. 1 Lake Park'
-    },
-    {
-      name: 'Joe Black',
-      age: 30,
-      address: 'Sydney No. 1 Lake Park'
-    },
-    {
-      name: 'Jon Snow',
-      age: 26,
-      address: 'Ottawa No. 2 Lake Park'
-    }
-  ],
-  columns4: [
+  videoColumns: [
     {
       type: 'selection',
       align: 'center',
       width: 60
     },
     {
-      title: 'Name',
+      title: '地区',
       align: 'center',
-      key: 'name'
+      key: 'province'
     },
     {
-      title: 'Age',
+      title: '车牌号',
       align: 'center',
-      key: 'age'
+      key: 'carId'
     },
     {
-      title: 'Address',
+      title: '设备通道号',
       align: 'center',
-      key: 'address'
+      key: 'deviceId'
+    },
+    {
+      title: '记录原因',
+      align: 'center',
+      key: 'errorReason'
+    },
+    {
+      title: '记录时间',
+      align: 'center',
+      key: 'creatTime'
     },
     {
       title: '操作',
@@ -75,32 +83,10 @@ const returnData = {
       width: 150
     }
   ],
-  data1: [
-    {
-      name: 'John Brown',
-      age: 18,
-      address: 'New York No. 1 Lake Park',
-      date: '2016-10-03'
-    },
-    {
-      name: 'Jim Green',
-      age: 24,
-      address: 'London No. 1 Lake Park',
-      date: '2016-10-01'
-    },
-    {
-      name: 'Joe Black',
-      age: 30,
-      address: 'Sydney No. 1 Lake Park',
-      date: '2016-10-02'
-    },
-    {
-      name: 'Jon Snow',
-      age: 26,
-      address: 'Ottawa No. 2 Lake Park',
-      date: '2016-10-04'
-    }
-  ]
+  alarmData: [],
+  videoData: [],
+  alarmLoading: false,
+  videoLoading: false
 }
 
 export default returnData

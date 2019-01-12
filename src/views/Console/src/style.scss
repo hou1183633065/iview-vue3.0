@@ -28,6 +28,11 @@
   .ivu-table th {
     background-color: #ececec;
   }
+  .ivu-cascader,
+  .ivu-date-picker,
+  .ivu-input-wrapper{
+    width: 160px;
+  }
   .active-color {
     color: $active--color;
   }

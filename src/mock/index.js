@@ -1,15 +1,27 @@
 import Mock from 'mockjs'
-// Mock响应模板
+import { randomWord } from './mock.fun'
 const Random = Mock.Random
+// Mock响应模板
 Mock.setup({
-  timeout: '400-1400'
+  timeout: '400-1000'
 })
-Mock.mock('/user', 'post', function (options) {
+
+Mock.mock('/tableList', 'post', function (options) {
   return Mock.mock({
-    'data|15': [{
+    'data|10': [{
+      'province': '@province',
+      'carId': Random.province().slice(0, 1) + Random.upper(Random.word(1)) + '-' + '@zip',
+      'deviceId': randomWord(8, true),
+      'errorType': Random.pick(['异常驾驶行为', '客车超员']),
+      'errorReason': '@cword(4)',
+      'fileNum': '@natural(1, 200)',
+      'fileSize': '@natural(1, 10000)',
+      'fileTime': '@date(HH:mm:ss)',
+      'creatTime': '@date(yyyy-MM-dd HH:mm:ss)',
       'name': '@cname',
       'id|+1': 88,
-      'email': Random.email()
+      'userId': '@guid',
+      'status': Random.pick(['在线', '维护', '注销'])
     }]
   })
 })

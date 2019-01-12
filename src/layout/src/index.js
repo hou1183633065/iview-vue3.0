@@ -7,7 +7,8 @@ import {
   Footer,
   Menu,
   MenuItem,
-  Icon
+  Icon,
+  Tooltip
 } from 'iview'
 export default {
   name: 'HomePage',
@@ -19,12 +20,14 @@ export default {
     Footer,
     Menu,
     MenuItem,
-    Icon
+    Icon,
+    Tooltip
   },
   data () {
     return {
       menuItems: [],
-      activeName: 0
+      activeName: 0,
+      sliderWidth: 160
     }
   },
   created () {
@@ -33,6 +36,17 @@ export default {
       if (this.$route.path === ele.path) {
         this.activeName = index
       }
+    })
+  },
+  mounted () {
+    this.$nextTick(() => {
+      let domWidth = document.body.clientWidth
+      if (domWidth > 1300) {
+        this.sliderWidth = 160
+      } else {
+        this.sliderWidth = 70
+      }
+      console.log()
     })
   },
   computed: {},

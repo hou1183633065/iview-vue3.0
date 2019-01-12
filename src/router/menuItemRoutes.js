@@ -15,7 +15,7 @@ const menuItemRoutes = [
     meta: {
       title: '用户管理',
       keepAlive: true,
-      icon: 'md-desktop'
+      icon: 'md-person'
     },
     component: () => import(/* webpackChunkName: "about" */ '@/views/UserManagement/index.vue')
   },
@@ -25,7 +25,7 @@ const menuItemRoutes = [
     meta: {
       title: '设备管理',
       keepAlive: true,
-      icon: 'md-desktop'
+      icon: 'md-cube'
     },
     component: () => import(/* webpackChunkName: "about" */ '@/views/DeviceManagement/index.vue')
   },
@@ -35,7 +35,7 @@ const menuItemRoutes = [
     meta: {
       title: '图片管理',
       keepAlive: true,
-      icon: 'md-desktop'
+      icon: 'md-images'
     },
     component: () => import(/* webpackChunkName: "about" */ '@/views/PhotoManagement/index.vue')
   },
@@ -45,7 +45,7 @@ const menuItemRoutes = [
     meta: {
       title: '视频管理',
       keepAlive: true,
-      icon: 'md-desktop'
+      icon: 'md-videocam'
     },
     component: () => import(/* webpackChunkName: "about" */ '@/views/VideoManagement/index.vue')
   },
@@ -55,7 +55,7 @@ const menuItemRoutes = [
     meta: {
       title: '报警管理',
       keepAlive: true,
-      icon: 'md-desktop'
+      icon: 'md-alarm'
     },
     component: () => import(/* webpackChunkName: "about" */ '@/views/AlarmManagement/index.vue')
   }

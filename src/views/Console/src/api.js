@@ -1,8 +1,8 @@
 
 import http from '@/httpConfig/index'
 
-export function getUser (page) {
-  return http.post('/user', {
+export function getTableList (page) {
+  return http.post('/tableList', {
     page: page,
     size: 10
   })
