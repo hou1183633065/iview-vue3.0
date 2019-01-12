@@ -46,7 +46,6 @@ export default {
       } else {
         this.sliderWidth = 70
       }
-      console.log()
     })
   },
   computed: {},

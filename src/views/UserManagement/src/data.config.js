@@ -2,6 +2,7 @@ const returnData = {
   pageCurrent: 1,
   pageSize: 10,
   pageTotal: 120,
+  nowSelectData: {},
   userColumns: [
     {
       type: 'selection',
@@ -46,85 +47,68 @@ const returnData = {
       width: 150
     }
   ],
-  userData: [],
   userLoading: false,
   userTypeList: [
     {
-      value: '11111111',
-      label: '11111111'
+      value: 'type1',
+      label: '系统管理员'
     },
     {
-      value: '22222222',
-      label: '22222222'
+      value: 'type2',
+      label: '监控人员'
     },
     {
-      value: '33333333',
-      label: '33333333'
+      value: 'type3',
+      label: '跨平台使用人员'
     },
     {
-      value: '44444444',
-      label: '44444444'
+      value: 'type4',
+      label: '政府平台使用人员'
     }
   ],
   userType: '',
   userGradeList: [
     {
-      value: 'AAAAAAAA',
-      label: 'AAAAAAAA'
+      value: 'type1',
+      label: '一级权限'
     },
     {
-      value: 'BBBBBBBB',
-      label: 'BBBBBBBB'
+      value: 'type2',
+      label: '二级权限'
     },
     {
-      value: 'CCCCCCCC',
-      label: 'CCCCCCCC'
+      value: 'type3',
+      label: '三级权限'
     },
     {
-      value: 'DDDDDDDD',
-      label: 'DDDDDDDD'
+      value: 'type4',
+      label: '四级权限'
     }
   ],
   userGrade: '',
   notesTime: '',
-  modalShow: true,
+  modalShow: false,
+  modalTitle: '',
+  modalSubmitText: '',
   formValidate: {
     name: '',
-    mail: '',
-    city: '',
+    email: '',
     gender: '',
-    interest: [],
-    date: '',
-    time: '',
-    desc: ''
+    grade: ''
   },
   ruleValidate: {
     name: [
-      { required: true, message: 'The name cannot be empty', trigger: 'blur' }
+      { required: true, message: '请输入用户名', trigger: 'blur' }
     ],
-    mail: [
-      { required: true, message: 'Mailbox cannot be empty', trigger: 'blur' },
-      { type: 'email', message: 'Incorrect email format', trigger: 'blur' }
-    ],
-    city: [
-      { required: true, message: 'Please select the city', trigger: 'change' }
+    email: [
+      { required: true, message: '请输入邮箱', trigger: 'blur' },
+      { type: 'email', message: '邮箱格式错误', trigger: 'blur' }
     ],
     gender: [
-      { required: true, message: 'Please select gender', trigger: 'change' }
+      { required: true, message: '请选择用户类型', trigger: 'sumit' }
     ],
-    interest: [
-      { required: true, type: 'array', min: 1, message: 'Choose at least one hobby', trigger: 'change' },
-      { type: 'array', max: 2, message: 'Choose two hobbies at best', trigger: 'change' }
-    ],
-    date: [
-      { required: true, type: 'date', message: 'Please select the date', trigger: 'change' }
-    ],
-    time: [
-      { required: true, type: 'string', message: 'Please select time', trigger: 'change' }
-    ],
-    desc: [
-      { required: true, message: 'Please enter a personal introduction', trigger: 'blur' },
-      { type: 'string', min: 20, message: 'Introduce no less than 20 words', trigger: 'blur' }
+    grade: [
+      { required: true, message: '请选择用户权限等级', trigger: 'sumit' }
     ]
   }
 }

@@ -7,9 +7,17 @@ Mock.setup({
 })
 
 Mock.mock('/tableList', 'post', function (options) {
+  // console.log(options.body)
   return Mock.mock({
     'data|10': [{
+      'name': '@cname',
+      'id|+1': 88,
+      'userId': '@guid',
+      'email': '@email(muheda.com)',
+      'grade': 'type' + '@natural(1, 4)',
+      'gender': 'type' + '@natural(1, 4)',
       'province': '@province',
+      // '_checked': '@boolean',
       'carId': Random.province().slice(0, 1) + Random.upper(Random.word(1)) + '-' + '@zip',
       'deviceId': randomWord(8, true),
       'errorType': Random.pick(['异常驾驶行为', '客车超员']),
@@ -18,9 +26,6 @@ Mock.mock('/tableList', 'post', function (options) {
       'fileSize': '@natural(1, 10000)',
       'fileTime': '@date(HH:mm:ss)',
       'creatTime': '@date(yyyy-MM-dd HH:mm:ss)',
-      'name': '@cname',
-      'id|+1': 88,
-      'userId': '@guid',
       'status': Random.pick(['在线', '维护', '注销'])
     }]
   })
