@@ -103,7 +103,6 @@ const returnData = {
     }
   ],
   alarmData: [],
-  videoData: [],
   alarmLoading: false,
   videoLoading: false
 }

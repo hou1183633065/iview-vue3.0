@@ -17,6 +17,11 @@ Vue.prototype.storeHasPage = function (pageIndex) {
   return this.$store.state.storeDataList.some((item) => item.page === pageIndex)
 }
 
+// 重置store存储数据
+Vue.prototype.resetDataList = function () {
+  this.$store.commit('resetDataList')
+}
+
 // 向store提交数据存储
 Vue.prototype.plusDataList = function (pageIndex, resData) {
   this.$store.commit('plusDataList', {

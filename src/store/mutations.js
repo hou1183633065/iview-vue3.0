@@ -1,4 +1,7 @@
 const mutations = {
+  resetDataList (state) {
+    state.storeDataList = []
+  },
   plusDataList (state, option) {
     let hasPage = state.storeDataList.some((item) => {
       return item.page === option.page

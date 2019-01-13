@@ -13,7 +13,8 @@ import {
   DatePicker,
   Input,
   Icon,
-  Page
+  Page,
+  Notice
 } from 'iview'
 export default {
   components: {
@@ -33,45 +34,74 @@ export default {
   data () {
     return returnData
   },
-  mounted () {
+  created () {
     this.getAlarmList(1)
     this.getVideoList(1)
+  },
+  computed: {
+    videoData () {
+      return this.getIndexData(this.pageCurrent)
+    }
+  },
+  watch: {
+    pageCurrent (newVal) {
+      this.getVideoList(newVal)
+    }
   },
   methods: {
     handleCityCascaderChange (params) {
       console.log(params)
     },
+    handleEditRow (currentRow) {
+      console.log(currentRow)
+    },
     handleLookMore (index) {
       console.log(index)
     },
-    handleDownLoad (index) {
-      console.log(index)
+    handleSelectIndex (selection) {
+      this.sendStoreData(this.pageCurrent, selection, true)
+    },
+    handleCancelIndex (selection) {
+      this.sendStoreData(this.pageCurrent, selection, false)
+    },
+    handleSelectAll (selection) {
+      this.sendStoreData(this.pageCurrent, selection, true)
+    },
+    handleCanceAll (selection) {
+      this.sendStoreData(this.pageCurrent, selection, false)
+    },
+    handleDownLoad (loadIndex) {
+      this.exportCsv('videoCassetteTable', {
+        filename: this.videoData[loadIndex].creatTime,
+        columns: this.videoColumns.filter((item, index, self) => index > 0 && index < self.length),
+        data: this.videoData.filter((item, index, self) => index === loadIndex)
+      })
+    },
+    handleDownLoadAll () {
+      let newArr = this.getCheckedData()
+      if (!newArr.length) {
+        Notice.error({
+          title: '没有勾选信息，暂不可批量下载！'
+        })
+        return false
+      }
+      this.exportCsv('videoCassetteTable', {
+        filename: '录像导出表',
+        columns: this.videoColumns.filter((item, index, self) => index > 0 && index < self.length),
+        data: newArr.filter((item, index, self) => index > 0 && index < self.length)
+      })
     },
     handleFirstPage () {
       console.log('handleFirstPage')
       this.pageCurrent = 1
-      this.getVideoList(this.pageCurrent)
     },
     handleLastPage () {
       console.log('handleLastPage')
       this.pageCurrent = Math.floor(this.pageTotal / this.pageSize)
-      this.getVideoList(this.pageCurrent)
     },
     pageChange (index) {
       console.log('pageChange')
       this.pageCurrent = index
-      this.getVideoList(this.pageCurrent)
-    },
-    async provinceLoadData (item, callback) {
-      console.log(item)
-      item.loading = true
-      if (item.grade === 'province') {
-        item.children = await this.getCityList(item.value)
-      } else if (item.grade === 'city') {
-        item.children = await this.getCountyList(item.value)
-      }
-      item.loading = false
-      callback()
     },
     async getAlarmList (page) {
       this.alarmLoading = true
@@ -86,12 +116,13 @@ export default {
     },
     async getVideoList (page) {
       this.videoLoading = true
-      let { success, resData } = await getTableList(page)
-      if (success) {
-        this.videoData = resData
-        // console.log(resData)
-      } else {
-        console.log('请求失败')
+      if (!this.storeHasPage()) {
+        let { success, resData } = await getTableList(page)
+        if (success) {
+          this.plusDataList(page, resData)
+        } else {
+          console.log('请求失败')
+        }
       }
       this.videoLoading = false
     }

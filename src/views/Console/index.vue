@@ -78,7 +78,19 @@
       </div>
     </div>
 
-    <Table border type="selection" :loading="videoLoading" :columns="videoColumns" :data="videoData" class="mt20">
+    <Table
+      border
+      class="mt20"
+      ref="videoCassetteTable"
+      type="selection"
+      :loading="videoLoading"
+      :columns="videoColumns"
+      :data="videoData"
+      @on-select="handleSelectIndex"
+      @on-select-cancel="handleCancelIndex"
+      @on-select-all="handleSelectAll"
+      @on-select-all-cancel="handleCanceAll"
+      @on-row-dblclick="handleEditRow">
       <template slot-scope="{ row }" slot="name">
           <strong>{{ row.name }}</strong>
       </template>
@@ -89,7 +101,7 @@
     </Table>
 
     <div class="flex row justify-between align-center mt30">
-       <Button type="text" @click="handleDownLoad(index)" class="active-color">批量下载</Button>
+       <Button type="text" @click="handleDownLoadAll" class="active-color">批量下载</Button>
        <div class="flex row justify-between align-center">
          <span class="mr20">第{{pageCurrent}}/{{pageTotal/pageSize}}页</span>
           <Button class="mr20" @click="handleFirstPage">首页</Button>
