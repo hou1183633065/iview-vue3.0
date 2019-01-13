@@ -52,7 +52,7 @@ Mock.mock('/county', 'post', function (options) {
   options = JSON.parse(options.body)
   return Mock.mock({
     data: ObjectTransformArray(chinaList.county_list).filter((item) => {
-      return item.value.slice(2, 4) === options.code.slice(2, 4)
+      return item.value.slice(0, 4) === options.code.slice(0, 4)
     })
   })
 })
