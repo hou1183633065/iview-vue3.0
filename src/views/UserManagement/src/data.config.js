@@ -12,26 +12,31 @@ const returnData = {
     {
       title: '地区',
       align: 'center',
+      tooltip: true,
       key: 'province'
     },
     {
       title: '车牌号',
       align: 'center',
+      tooltip: true,
       key: 'carId'
     },
     {
       title: '设备通道号',
       align: 'center',
+      tooltip: true,
       key: 'deviceId'
     },
     {
       title: '记录原因',
       align: 'center',
+      tooltip: true,
       key: 'errorReason'
     },
     {
       title: '记录时间',
       align: 'center',
+      tooltip: true,
       key: 'creatTime'
     },
     {
