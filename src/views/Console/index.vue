@@ -50,7 +50,8 @@
     <div class="Console-alarm-count input-row text-left size12 plr40">
       <div class="flex row justify-start align-center wrap">
         <div class="flex row justify-start align-center mr40 mt10 mb10">
-          <Cascader class="mr40" placeholder="地区" :data="provinceData" :load-data="provinceLoadData"></Cascader>
+          <!-- <Cascader placeholder="地区" :data="provinceData" :load-data="provinceLoadData"></Cascader> -->
+          <cascader-city class="mr40" placeholder="地区" grade="province" @on-cityCascader-change="handleCityCascaderChange"></cascader-city>
           <Cascader placeholder="记录原因"></Cascader>
         </div>
         <div class="flex row justify-start align-center mr40 mt10 mb10">

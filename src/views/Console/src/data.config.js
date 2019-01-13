@@ -86,8 +86,7 @@ const returnData = {
   alarmData: [],
   videoData: [],
   alarmLoading: false,
-  videoLoading: false,
-  provinceData: []
+  videoLoading: false
 }
 
 export default returnData

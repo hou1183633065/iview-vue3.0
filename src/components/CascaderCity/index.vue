@@ -22,7 +22,7 @@ export default {
     placeholder: {
       type: String,
       required: false,
-      default: '地区'
+      default: '地区选择'
     },
     // grade值为等级联动值：province/city/county
     grade: {
