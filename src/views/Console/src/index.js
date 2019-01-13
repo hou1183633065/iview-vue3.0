@@ -1,6 +1,6 @@
 
 import returnData from './data.config'
-import HeadLine from '@/components/HeadLine'
+import HeadLine from '@/components/HeadLine/index'
 import CascaderCity from '@/components/CascaderCity/index'
 import { getTableList } from './api'
 import {

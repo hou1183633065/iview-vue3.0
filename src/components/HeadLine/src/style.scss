@@ -1,0 +1,19 @@
+@import "@/assets/style/Theme.scss";
+.Headline {
+  .title {
+    &::before {
+      display: inline-block;
+      content: "";
+      width: 4px;
+      height: 22px;
+      background: $headline-bg-color;
+    }
+    p {
+      margin-left: 8px;
+      color: $headline-color;
+    }
+    .subtitle {
+      color: #999999;
+    }
+  }
+}
