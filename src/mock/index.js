@@ -1,5 +1,6 @@
 import Mock from 'mockjs'
-import { randomWord } from './mock.fun'
+import { randomWord, ObjectTransformArray } from './mock.fun'
+import chinaList from './area'
 const Random = Mock.Random
 // Mock响应模板
 Mock.setup({
@@ -7,6 +8,7 @@ Mock.setup({
 })
 
 Mock.mock('/tableList', 'post', function (options) {
+  options = JSON.parse(options.body)
   // console.log(options.body)
   return Mock.mock({
     'data|10': [{
@@ -28,6 +30,30 @@ Mock.mock('/tableList', 'post', function (options) {
       'creatTime': '@date(yyyy-MM-dd HH:mm:ss)',
       'status': Random.pick(['在线', '维护', '注销'])
     }]
+  })
+})
+
+Mock.mock('/province', 'post', function () {
+  return Mock.mock({
+    data: ObjectTransformArray(chinaList.province_list)
+  })
+})
+
+Mock.mock('/city', 'post', function (options) {
+  options = JSON.parse(options.body)
+  return Mock.mock({
+    data: ObjectTransformArray(chinaList.city_list).filter((item) => {
+      return item.value.slice(0, 2) === options.code.slice(0, 2)
+    })
+  })
+})
+
+Mock.mock('/county', 'post', function (options) {
+  options = JSON.parse(options.body)
+  return Mock.mock({
+    data: ObjectTransformArray(chinaList.county_list).filter((item) => {
+      return item.value.slice(2, 4) === options.code.slice(2, 4)
+    })
   })
 })
 

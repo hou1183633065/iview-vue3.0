@@ -15,3 +15,14 @@ export function randomWord (len, upper) {
   }
   return newStr
 }
+
+export function ObjectTransformArray (optObj) {
+  let newArr = []
+  for (const key in optObj) {
+    newArr.push({
+      value: key,
+      label: optObj[key]
+    })
+  }
+  return newArr
+}
