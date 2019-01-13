@@ -1,6 +1,7 @@
 
 import returnData from './data.config'
 import HeadLine from '@/components/HeadLine/index'
+import PageTurning from '@/components/PageTurning/index'
 import CascaderCity from '@/components/CascaderCity/index'
 import { getTableList } from './api'
 import {
@@ -13,12 +14,12 @@ import {
   DatePicker,
   Input,
   Icon,
-  Page,
   Notice
 } from 'iview'
 export default {
   components: {
     HeadLine,
+    PageTurning,
     CascaderCity,
     iRow: Row,
     iCol: Col,
@@ -28,8 +29,7 @@ export default {
     Option,
     DatePicker,
     iInput: Input,
-    Icon,
-    Page
+    Icon
   },
   data () {
     return returnData
@@ -91,17 +91,8 @@ export default {
         data: newArr.filter((item, index, self) => index > 0 && index < self.length)
       })
     },
-    handleFirstPage () {
-      console.log('handleFirstPage')
-      this.pageCurrent = 1
-    },
-    handleLastPage () {
-      console.log('handleLastPage')
-      this.pageCurrent = Math.floor(this.pageTotal / this.pageSize)
-    },
-    pageChange (index) {
-      console.log('pageChange')
-      this.pageCurrent = index
+    handlePageChange (page) {
+      this.pageCurrent = page
     },
     async getAlarmList (page) {
       this.alarmLoading = true
@@ -120,8 +111,6 @@ export default {
         let { success, resData } = await getTableList(page)
         if (success) {
           this.plusDataList(page, resData)
-        } else {
-          console.log('请求失败')
         }
       }
       this.videoLoading = false

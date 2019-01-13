@@ -31,7 +31,6 @@ export default {
     }
   },
   created () {
-    this.resetDataList()
     this.menuItems = menuItemRoutes
     menuItemRoutes.forEach((ele, index) => {
       if (this.$route.path === ele.path) {

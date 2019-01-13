@@ -50,12 +50,7 @@
 
     <div class="flex row justify-between align-center mt30">
        <Button type="text" @click="handleDownLoadAll" class="active-color">批量下载</Button>
-       <div class="flex row justify-between align-center">
-         <span class="mr20">第{{pageCurrent}}/{{pageTotal/pageSize}}页</span>
-          <Button class="mr20" @click="handleFirstPage">首页</Button>
-         <Page :current="pageCurrent" :total="pageTotal" :page-size="pageSize" @on-change="pageChange" />
-          <Button class="ml20" @click="handleLastPage">尾页</Button>
-       </div>
+       <page-turning :pageTotal="100" @on-page-change="handlePageChange"></page-turning>
     </div>
 
     <Modal

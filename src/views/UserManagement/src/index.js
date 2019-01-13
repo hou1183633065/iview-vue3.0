@@ -1,13 +1,13 @@
 
 import returnData from './data.config'
 import HeadLine from '@/components/HeadLine/index'
+import PageTurning from '@/components/PageTurning/index'
 import {
   Table,
   Button,
   Select,
   Option,
   Input,
-  Page,
   Modal,
   Form,
   FormItem,
@@ -19,12 +19,12 @@ import { getTableList } from './api'
 export default {
   components: {
     HeadLine,
+    PageTurning,
     Table,
     Button,
     Select,
     Option,
     iInput: Input,
-    Page,
     Modal,
     Form,
     FormItem,
@@ -117,17 +117,8 @@ export default {
         data: newArr.filter((item, index, self) => index > 0 && index < self.length)
       })
     },
-    handleFirstPage () {
-      console.log('handleFirstPage')
-      this.pageCurrent = 1
-    },
-    handleLastPage () {
-      console.log('handleLastPage')
-      this.pageCurrent = Math.floor(this.pageTotal / this.pageSize)
-    },
-    pageChange (index) {
-      console.log('pageChange')
-      this.pageCurrent = index
+    handlePageChange (page) {
+      this.pageCurrent = page
     },
     handleSubmit (name) {
       this.$refs[name].validate((valid) => {
@@ -142,12 +133,10 @@ export default {
     },
     async getUserList (page) {
       this.userLoading = true
-      if (!this.storeHasPage()) {
+      if (!this.storeHasPage(page)) {
         let { success, resData } = await getTableList(page)
         if (success) {
           this.plusDataList(page, resData)
-        } else {
-          console.log('请求失败')
         }
       }
       this.userLoading = false
