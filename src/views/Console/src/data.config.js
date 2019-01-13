@@ -83,6 +83,25 @@ const returnData = {
       width: 150
     }
   ],
+  errorReason: '',
+  errorDataList: [
+    {
+      value: 'type1',
+      label: '客车超员'
+    },
+    {
+      value: 'type2',
+      label: '设备故障'
+    },
+    {
+      value: 'type3',
+      label: '信号丢失'
+    },
+    {
+      value: 'type4',
+      label: '司机走丢'
+    }
+  ],
   alarmData: [],
   videoData: [],
   alarmLoading: false,

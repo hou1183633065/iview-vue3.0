@@ -50,19 +50,28 @@
     <div class="Console-alarm-count input-row text-left size12 plr40">
       <div class="flex row justify-start align-center wrap">
         <div class="flex row justify-start align-center mr40 mt10 mb10">
-          <!-- <Cascader placeholder="地区" :data="provinceData" :load-data="provinceLoadData"></Cascader> -->
-          <cascader-city class="mr40" placeholder="地区" grade="province" @on-cityCascader-change="handleCityCascaderChange"></cascader-city>
-          <Cascader placeholder="记录原因"></Cascader>
+          <cascader-city
+            class="mr40"
+            placeholder="地区"
+            grade="province"
+            @on-cityCascader-change="handleCityCascaderChange">
+          </cascader-city>
+          <Select v-model="errorReason" placeholder="记录原因">
+              <Option v-for="item in errorDataList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+          </Select>
         </div>
         <div class="flex row justify-start align-center mr40 mt10 mb10">
-          <p>记录时间：</p>
+          <p class="label-color">记录时间：</p>
           <DatePicker type="datetime" format="yyyy-MM-dd HH:mm" placeholder="开始时间"></DatePicker>—
           <DatePicker type="datetime" format="yyyy-MM-dd HH:mm" placeholder="结束时间"></DatePicker>
         </div>
        <div class="flex row justify-start align-center mt10 mb10">
-          <p>车牌号：</p>
+          <p class="label-color">车牌号：</p>
           <i-input placeholder="Enter name">
-            京<Icon type="ios-contact" slot="prefix" />
+            <div slot="prefix">
+              <span class="mr5">京</span>
+              <Icon type="ios-contact" />
+            </div>
           </i-input>
           <Button type="primary" class="ml50">筛选</Button>
         </div>
