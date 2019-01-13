@@ -39,16 +39,6 @@ export default {
   },
   mounted () {
   },
-  computed: {
-    dataList () {
-      return this.getIndexData(this.pageCurrent)
-    }
-  },
-  watch: {
-    pageCurrent (newVal) {
-      this.getUserList(newVal)
-    }
-  },
   methods: {
     handleSearch () {
       // console.log(this.$store.state.storeDataList)
@@ -82,16 +72,16 @@ export default {
       this.modalShow = true
     },
     handleSelectIndex (selection) {
-      this.sendStoreData(this.pageCurrent, selection, true)
+      this.sendCheckedData(this.allPageData, selection, this.pageCurrent, true)
     },
     handleCancelIndex (selection) {
-      this.sendStoreData(this.pageCurrent, selection, false)
+      this.sendCheckedData(this.allPageData, selection, this.pageCurrent, false)
     },
     handleSelectAll (selection) {
-      this.sendStoreData(this.pageCurrent, selection, true)
+      this.sendCheckedData(this.allPageData, selection, this.pageCurrent, true)
     },
     handleCanceAll (selection) {
-      this.sendStoreData(this.pageCurrent, selection, false)
+      this.sendCheckedData(this.allPageData, selection, this.pageCurrent, false)
     },
     handleLookMore (index) {
       console.log(this.dataList[index])
@@ -104,7 +94,7 @@ export default {
       })
     },
     handleDownLoadAll () {
-      let newArr = this.getCheckedData()
+      let newArr = this.getCheckedData(this.allPageData)
       if (!newArr.length) {
         Notice.error({
           title: '没有勾选信息，暂不可批量下载！'
@@ -119,6 +109,7 @@ export default {
     },
     handlePageChange (page) {
       this.pageCurrent = page
+      this.getUserList(page)
     },
     handleSubmit (name) {
       this.$refs[name].validate((valid) => {
@@ -133,12 +124,13 @@ export default {
     },
     async getUserList (page) {
       this.userLoading = true
-      if (!this.storeHasPage(page)) {
+      if (!this.dataHasPage(this.allPageData, page)) {
         let { success, resData } = await getTableList(page)
         if (success) {
-          this.plusDataList(page, resData)
+          this.plusDataList(this.allPageData, resData, page)
         }
       }
+      this.dataList = this.getIndexData(this.allPageData, page)
       this.userLoading = false
     }
   }

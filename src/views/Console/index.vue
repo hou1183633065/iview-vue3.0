@@ -85,7 +85,7 @@
       type="selection"
       :loading="videoLoading"
       :columns="videoColumns"
-      :data="videoData"
+      :data="videoList"
       @on-select="handleSelectIndex"
       @on-select-cancel="handleCancelIndex"
       @on-select-all="handleSelectAll"

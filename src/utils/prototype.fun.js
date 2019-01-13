@@ -13,47 +13,64 @@ Vue.prototype.exportCsv = function (ref, config) {
 }
 
 // store中是否加载过当前页
-Vue.prototype.storeHasPage = function (pageIndex) {
-  return this.$store.state.storeDataList.some((item) => item.page === pageIndex)
-}
-
-// 重置store存储数据
-Vue.prototype.resetDataList = function () {
-  this.$store.commit('resetDataList')
+Vue.prototype.dataHasPage = function (allData, pageIndex) {
+  if (!allData.length) {
+    return false
+  } else {
+    return allData.some((item) => item.page === pageIndex)
+  }
 }
 
 // 向store提交数据存储
-Vue.prototype.plusDataList = function (pageIndex, resData) {
-  this.$store.commit('plusDataList', {
-    page: pageIndex,
-    data: resData
-  })
+Vue.prototype.plusDataList = function (allData, addData, pageIndex) {
+  if (!this.dataHasPage(allData, pageIndex)) {
+    allData.push({
+      data: addData,
+      page: pageIndex
+    })
+  }
+  return allData
 }
 
+// 向store提交数据存储
+// Vue.prototype.plusDataList = function (pageIndex, resData) {
+//   this.$store.commit('plusDataList', {
+//     page: pageIndex,
+//     data: resData
+//   })
+// }
+
 // 向store发送选中和取消的数据
-Vue.prototype.sendStoreData = function (pageIndex, selectedData, checkedStatus) {
-  this.$store.commit('toogleChecked', {
-    page: pageIndex,
-    data: selectedData,
-    checked: checkedStatus
+Vue.prototype.sendCheckedData = function (allData, addData, pageIndex, checkedStatus) {
+  let targetData = allData.find((item) => {
+    return item.page === pageIndex
   })
+  targetData.data.map((item) => {
+    addData.forEach(ele => {
+      if (JSON.stringify(item) === JSON.stringify(ele)) {
+        item._checked = checkedStatus
+      }
+    })
+    return item
+  })
+  return targetData
 }
 
 // 在computed中以页码数获取store已存数据
-Vue.prototype.getIndexData = function (pageIndex) {
-  let newData = []
-  this.$store.state.storeDataList.forEach(element => {
-    if (element.page === pageIndex) {
-      newData = element.data
-    }
-  })
-  return newData
+Vue.prototype.getIndexData = function (allData, pageIndex) {
+  if (!allData.length) {
+    return []
+  } else {
+    return allData.filter((item) => {
+      return item.page === pageIndex
+    })[0].data
+  }
 }
 
 // 在store中，将按页数存放的数据，整理成为勾选将要下载的数据
-Vue.prototype.getCheckedData = function () {
+Vue.prototype.getCheckedData = function (allData) {
   let newArr = []
-  this.$store.state.storeDataList.forEach(element => {
+  allData.forEach(element => {
     newArr = newArr.concat(element.data.filter((item) => item._checked))
   })
   return newArr

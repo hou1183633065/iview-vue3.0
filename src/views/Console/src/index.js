@@ -38,16 +38,6 @@ export default {
     this.getAlarmList(1)
     this.getVideoList(1)
   },
-  computed: {
-    videoData () {
-      return this.getIndexData(this.pageCurrent)
-    }
-  },
-  watch: {
-    pageCurrent (newVal) {
-      this.getVideoList(newVal)
-    }
-  },
   methods: {
     handleCityCascaderChange (params) {
       console.log(params)
@@ -59,26 +49,26 @@ export default {
       console.log(index)
     },
     handleSelectIndex (selection) {
-      this.sendStoreData(this.pageCurrent, selection, true)
+      this.sendCheckedData(this.allPageData, selection, this.pageCurrent, true)
     },
     handleCancelIndex (selection) {
-      this.sendStoreData(this.pageCurrent, selection, false)
+      this.sendCheckedData(this.allPageData, selection, this.pageCurrent, false)
     },
     handleSelectAll (selection) {
-      this.sendStoreData(this.pageCurrent, selection, true)
+      this.sendCheckedData(this.allPageData, selection, this.pageCurrent, true)
     },
     handleCanceAll (selection) {
-      this.sendStoreData(this.pageCurrent, selection, false)
+      this.sendCheckedData(this.allPageData, selection, this.pageCurrent, false)
     },
     handleDownLoad (loadIndex) {
       this.exportCsv('videoCassetteTable', {
-        filename: this.videoData[loadIndex].creatTime,
+        filename: this.videoList[loadIndex].creatTime,
         columns: this.videoColumns.filter((item, index, self) => index > 0 && index < self.length),
-        data: this.videoData.filter((item, index, self) => index === loadIndex)
+        data: this.videoList.filter((item, index, self) => index === loadIndex)
       })
     },
     handleDownLoadAll () {
-      let newArr = this.getCheckedData()
+      let newArr = this.getCheckedData(this.allPageData)
       if (!newArr.length) {
         Notice.error({
           title: '没有勾选信息，暂不可批量下载！'
@@ -93,6 +83,7 @@ export default {
     },
     handlePageChange (page) {
       this.pageCurrent = page
+      this.getVideoList(page)
     },
     async getAlarmList (page) {
       this.alarmLoading = true
@@ -107,12 +98,13 @@ export default {
     },
     async getVideoList (page) {
       this.videoLoading = true
-      if (!this.storeHasPage()) {
+      if (!this.dataHasPage(this.allPageData, page)) {
         let { success, resData } = await getTableList(page)
         if (success) {
-          this.plusDataList(page, resData)
+          this.plusDataList(this.allPageData, resData, page)
         }
       }
+      this.videoList = this.getIndexData(this.allPageData, page)
       this.videoLoading = false
     }
   }

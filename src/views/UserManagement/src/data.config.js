@@ -2,6 +2,8 @@ const returnData = {
   pageCurrent: 1,
   pageSize: 10,
   pageTotal: 120,
+  allPageData: [],
+  dataList: [],
   nowSelectData: {},
   userColumns: [
     {
