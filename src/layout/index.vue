@@ -17,7 +17,7 @@
           </div>
         </Header>
         <Layout class="full-height">
-            <Sider hide-trigger :width="sliderWidth" class="full-height slide-bg">
+            <Sider hide-trigger :width="$store.state.slideTextShow?160:70" class="full-height slide-bg">
               <Menu mode="vertical" width="auto" :active-name="activeName" @on-select="handleSelectMenu">
                 <MenuItem
                   v-for="(item, index) in menuItems"
@@ -26,10 +26,10 @@
                   :to="item.path"
                   class="text-left"
                   >
-                  <Tooltip :content="item.meta.title" placement="right">
+                  <Tooltip :content="item.meta.title" placement="right" :disabled="$store.state.slideTextShow">
                     <Icon :type="item.meta.icon" size="16" />
                   </Tooltip>
-                  <span v-if="sliderWidth==160">{{item.meta.title}}</span>
+                  <span v-if="$store.state.slideTextShow">{{item.meta.title}}</span>
                 </MenuItem>
               </Menu>
             </Sider>

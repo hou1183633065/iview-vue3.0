@@ -40,11 +40,12 @@ export default {
   },
   mounted () {
     this.$nextTick(() => {
+      // 根据浏览器宽度匹配左边slide是否显示文字
       let domWidth = document.body.clientWidth
-      if (domWidth > 1300) {
-        this.sliderWidth = 160
+      if (domWidth > 1500) {
+        this.$store.commit('toogleSlideStatus', true)
       } else {
-        this.sliderWidth = 70
+        this.$store.commit('toogleSlideStatus', false)
       }
     })
   },
