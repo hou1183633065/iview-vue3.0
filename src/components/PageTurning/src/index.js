@@ -22,19 +22,15 @@ export default {
       page: 1
     }
   },
-  computed: {
-    lastPage () {
-      return Math.ceil(this.pageTotal / this.pageSize)
-    }
-  },
   methods: {
     handleFirstPage () {
       this.page = 1
       this.$emit('on-page-change', 1)
     },
     handleLastPage () {
-      this.page = this.lastPage
-      this.$emit('on-page-change', this.lastPage)
+      let lastPage = Math.ceil(this.pageTotal / this.pageSize)
+      this.page = lastPage
+      this.$emit('on-page-change', lastPage)
     },
     pageChange (index) {
       this.page = index
