@@ -26,8 +26,7 @@ export default {
   data () {
     return {
       menuItems: [],
-      activeName: 0,
-      sliderWidth: 160
+      activeName: 0
     }
   },
   created () {
