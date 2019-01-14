@@ -1,0 +1,51 @@
+@import "@/assets/style/Theme.scss";
+.DeviceManagement {
+  &-alarm-count {
+    height: 84px;
+    border-radius: 4px;
+    border: 1px solid rgba(236, 236, 236, 1);
+    background: #ececec;
+    .blue-font {
+      color: $blue-font-color;
+    }
+    &.input-row {
+      height: auto;
+      p {
+        white-space: nowrap;
+      }
+    }
+  }
+  .ivu-table-wrapper {
+    border-color: #ececec;
+    border-radius: 4px 4px 0px 0px;
+    .ivu-table-header {
+      .ivu-table-column-center {
+        height: 50px;
+        border-right: none;
+      }
+    }
+  }
+  .ivu-table th {
+    background-color: #ececec;
+  }
+  .ivu-input-with-prefix{
+    padding-left: 50px;
+    overflow: hidden;
+  }
+  .ivu-input-prefix{
+    overflow: hidden;
+    width: 50px;
+    background: #D9D9D9;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+  }
+  .active-color {
+    color: $active--color;
+  }
+  .ivu-page-item-active {
+    background-color: $blue-button-color;
+    a {
+      color: #ffffff;
+    }
+  }
+}

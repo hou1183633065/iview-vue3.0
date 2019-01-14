@@ -19,7 +19,7 @@
           </Select>
         </div>
         <div class="flex row justify-start align-center mr40 mt10 mb10">
-          <p>记录时间：</p>
+          <p>用户名称：</p>
           <i-input v-model="notesTime" placeholder="请输入" />
           <Button type="primary" class="ml50" @click="handleSearch">搜索</Button>
         </div>
