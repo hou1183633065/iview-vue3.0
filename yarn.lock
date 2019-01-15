@@ -2316,7 +2316,12 @@ copy-webpack-plugin@^4.6.0:
     p-limit "^1.0.0"
     serialize-javascript "^1.4.0"
 
-core-js@^2.4.0, core-js@^2.5.7, core-js@^2.6.1:
+core-js@^2.4.0:
+  version "2.6.2"
+  resolved "http://registry.npm.taobao.org/core-js/download/core-js-2.6.2.tgz#267988d7268323b349e20b4588211655f0e83944"
+  integrity sha1-JnmI1yaDI7NJ4gtFiCEWVfDoOUQ=
+
+core-js@^2.5.7, core-js@^2.6.1:
   version "2.6.1"
   resolved "http://registry.npm.taobao.org/core-js/download/core-js-2.6.1.tgz#87416ae817de957a3f249b3b5ca475d4aaed6042"
   integrity sha1-h0Fq6BfelXo/JJs7XKR11KrtYEI=
@@ -4827,9 +4832,9 @@ isstream@~0.1.2:
   integrity sha1-R+Y/evVa+m+S4VAOaQ64uFKcCZo=
 
 iview@^3.0.1:
-  version "3.2.1"
-  resolved "http://registry.npm.taobao.org/iview/download/iview-3.2.1.tgz#ea578948408a21f4c74c168dba19ee8fa04bd5e0"
-  integrity sha1-6leJSECKIfTHTBaNuhnuj6BL1eA=
+  version "3.2.2"
+  resolved "http://registry.npm.taobao.org/iview/download/iview-3.2.2.tgz#5b7d8db5d1ea711cc39faae60457aa0354cb52c8"
+  integrity sha1-W32NtdHqcRzDn6rmBFeqA1TLUsg=
   dependencies:
     async-validator "^1.10.0"
     deepmerge "^2.2.1"
@@ -6839,6 +6844,11 @@ public-encrypt@^4.0.0:
     randombytes "^2.0.1"
     safe-buffer "^5.1.2"
 
+pubsub-js@^1.7.0:
+  version "1.7.0"
+  resolved "http://registry.npm.taobao.org/pubsub-js/download/pubsub-js-1.7.0.tgz#eca97f9a4217bef62b2d3aaa1552005260cc2e49"
+  integrity sha1-7Kl/mkIXvvYrLTqqFVIAUmDMLkk=
+
 pump@^2.0.0, pump@^2.0.1:
   version "2.0.1"
   resolved "http://registry.npm.taobao.org/pump/download/pump-2.0.1.tgz#12399add6e4cf7526d973cbc8b5ce2e2908b3909"
@@ -8598,9 +8608,9 @@ vue-style-loader@^4.1.0:
     loader-utils "^1.0.2"
 
 vue-template-compiler@^2.5.21:
-  version "2.5.21"
-  resolved "http://registry.npm.taobao.org/vue-template-compiler/download/vue-template-compiler-2.5.21.tgz#a57ceb903177e8f643560a8d639a0f8db647054a"
-  integrity sha1-pXzrkDF36PZDVgqNY5oPjbZHBUo=
+  version "2.5.22"
+  resolved "http://registry.npm.taobao.org/vue-template-compiler/download/vue-template-compiler-2.5.22.tgz#c3d3c02c65f1908205c4fbd3b0ef579e51239955"
+  integrity sha1-w9PALGXxkIIFxPvTsO9XnlEjmVU=
   dependencies:
     de-indent "^1.0.2"
     he "^1.1.0"
@@ -8611,9 +8621,9 @@ vue-template-es2015-compiler@^1.6.0:
   integrity sha1-qAnqANBzxUWLXmQsitDrz3MFugY=
 
 vue@^2.5.21:
-  version "2.5.21"
-  resolved "http://registry.npm.taobao.org/vue/download/vue-2.5.21.tgz#3d33dcd03bb813912ce894a8303ab553699c4a85"
-  integrity sha1-PTPc0Du4E5Es6JSoMDq1U2mcSoU=
+  version "2.5.22"
+  resolved "http://registry.npm.taobao.org/vue/download/vue-2.5.22.tgz#3bf88041af08b8539c37b268b70ca79245e9cc30"
+  integrity sha1-O/iAQa8IuFOcN7JotwynkkXpzDA=
 
 vuex@^3.0.1:
   version "3.0.1"
