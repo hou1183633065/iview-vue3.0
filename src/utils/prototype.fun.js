@@ -23,58 +23,6 @@ Vue.prototype.publish = function (eventName, callback) {
   PubSub.publish(eventName, callback())
 }
 
-// 本地sessionStorage存储封装
-Vue.prototype.sessionStorage = {
-  period: 1000 * 60 * 10,
-  timestamp: function () {
-    return Date.parse(new Date())
-  },
-  resultIsNull: function (storageKey) {
-    let storage = window.sessionStorage.getItem(storageKey)
-    if (storage === null || storage === 'null' || storage === '' || storage === '{}' || storage === '[]') {
-      return true
-    } else {
-      return false
-    }
-  },
-  isExpired: function (times) {
-    if (this.timestamp() - times > this.period) {
-      return true
-    } else {
-      return false
-    }
-  },
-  setItem: function (storageKey, storageData) {
-    window.sessionStorage.setItem(storageKey, JSON.stringify({
-      _Version: this.timestamp(),
-      _Data: storageData
-    }))
-  },
-  getItem: function (storageKey) {
-    let storageData = JSON.parse(window.sessionStorage.getItem(storageKey))
-    // 检查键值对数据是否存在
-    if (this.resultIsNull(storageKey)) {
-      return null
-    }
-
-    // 检查数据是否过期
-    if (this.isExpired(storageData._Version)) {
-      return storageData._Data
-    } else {
-      this.removeItem(storageKey)
-      return null
-    }
-  },
-  updateItem: function (storageKey) {
-    // window.sessionStorage.getItem()
-  },
-  removeItem: function (storageKey) {
-    window.sessionStorage.removeItem(storageKey)
-  },
-  clear: function () {
-    window.sessionStorage.clear()
-  }
-}
 // 导出报表
 Vue.prototype.exportCsv = function (ref, config) {
   config = Object.assign({

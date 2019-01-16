@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router/index'
 import store from './store/index'
 import './utils/prototype.fun'
+import './utils/storage.fun'
 
 import 'iview/dist/styles/iview.css'
 
