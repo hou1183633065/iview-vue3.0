@@ -4,53 +4,53 @@ const storageMixins = {
   },
   mounted () {
     this.sessionStorage.removeItem(this.storageKey)
-    setTimeout(() => {
-      this.sessionStorage.plusItem(this.storageKey, {
-        page: 1,
-        data: {
-          a: this.data1++,
-          b: this.data2++,
-          c: this.data3++
-        }
-      })
-      this.testFun()
-    }, 3000)
+    // setTimeout(() => {
+    //   this.sessionStorage.plusItem(this.storageKey, {
+    //     page: 1,
+    //     data: {
+    //       a: this.data1++,
+    //       b: this.data2++,
+    //       c: this.data3++
+    //     }
+    //   })
+    //   this.testFun()
+    // }, 3000)
 
-    setTimeout(() => {
-      this.sessionStorage.plusItem(this.storageKey, {
-        page: 1,
-        data: {
-          a: this.data1++,
-          b: this.data2++,
-          c: this.data3++
-        }
-      })
-      this.testFun()
-    }, 6000)
+    // setTimeout(() => {
+    //   this.sessionStorage.plusItem(this.storageKey, {
+    //     page: 1,
+    //     data: {
+    //       a: this.data1++,
+    //       b: this.data2++,
+    //       c: this.data3++
+    //     }
+    //   })
+    //   this.testFun()
+    // }, 6000)
 
-    setTimeout(() => {
-      this.sessionStorage.plusItem(this.storageKey, {
-        page: 2,
-        data: {
-          a: this.data1++,
-          b: this.data2++,
-          c: this.data3++
-        }
-      })
-      this.testFun()
-    }, 9000)
+    // setTimeout(() => {
+    //   this.sessionStorage.plusItem(this.storageKey, {
+    //     page: 2,
+    //     data: {
+    //       a: this.data1++,
+    //       b: this.data2++,
+    //       c: this.data3++
+    //     }
+    //   })
+    //   this.testFun()
+    // }, 9000)
 
-    setTimeout(() => {
-      this.sessionStorage.plusItem(this.storageKey, {
-        page: 2,
-        data: {
-          a: this.data1++,
-          b: this.data2++,
-          c: this.data3++
-        }
-      })
-      this.testFun()
-    }, 12000)
+    // setTimeout(() => {
+    //   this.sessionStorage.plusItem(this.storageKey, {
+    //     page: 2,
+    //     data: {
+    //       a: this.data1++,
+    //       b: this.data2++,
+    //       c: this.data3++
+    //     }
+    //   })
+    //   this.testFun()
+    // }, 12000)
   },
   methods: {
     testFun () {

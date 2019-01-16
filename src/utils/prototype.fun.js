@@ -1,26 +1,21 @@
 import Vue from 'vue'
 import PubSub from 'pubsub-js'
 
-// 消息订阅
+// // 消息订阅
 Vue.prototype.subscribe = function (eventName, callback) {
-  PubSub.subscribe(eventName, (msg, callback) => {
-    callback()
+  PubSub.subscribe(eventName, (msg, next) => {
+    callback(next)
   })
-}
-
-// 取消消息订阅
-Vue.prototype.subscribe = function (eventName, callback) {
-  PubSub.unsubscribe(eventName, callback())
-}
-
-// 清除消息订阅
-Vue.prototype.subscribe = function () {
-  PubSub.clearAllSubscriptions()
 }
 
 // 消息发布
 Vue.prototype.publish = function (eventName, callback) {
-  PubSub.publish(eventName, callback())
+  PubSub.publish(eventName, callback)
+}
+
+// 清除消息订阅
+Vue.prototype.clearAllSub = function () {
+  PubSub.clearAllSubscriptions()
 }
 
 // 导出报表
