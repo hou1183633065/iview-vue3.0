@@ -20,6 +20,11 @@ const firstRoutes = [
     component: () => import(/* webpackChunkName: "about" */ '@/views/Login/index.vue')
   },
   {
+    path: '/amap',
+    name: 'Amap',
+    component: () => import(/* webpackChunkName: "about" */ '@/views/Amap.vue')
+  },
+  {
     path: '/home1',
     name: 'home1',
     component: () => import(/* webpackChunkName: "about" */ '@/views/Home.vue')

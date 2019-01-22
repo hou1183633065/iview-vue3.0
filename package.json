@@ -8,6 +8,8 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@antv/data-set": "^0.10.1",
+    "@antv/g2": "^3.4.10",
     "axios": "^0.18.0",
     "iview": "^3.0.1",
     "mockjs": "^1.0.1-beta3",
